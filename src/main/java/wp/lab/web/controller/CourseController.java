@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import wp.lab.model.Course;
-import wp.lab.model.Student;
 import wp.lab.model.Teacher;
 import wp.lab.service.CourseService;
+import wp.lab.service.TeacherService;
 
 import java.util.List;
 
@@ -21,9 +21,12 @@ import java.util.List;
 @Controller
 public class CourseController {
     private final CourseService courseService;
+    private final TeacherService teacherService;
 
-    public CourseController(CourseService courseService) {
+
+    public CourseController(CourseService courseService, TeacherService teacherService) {
         this.courseService = courseService;
+        this.teacherService = teacherService;
     }
 
     @GetMapping({"/", "/courses"})
@@ -32,26 +35,36 @@ public class CourseController {
             model.addAttribute("hasError", true);
             model.addAttribute("error", error);
         }
+
         List<Course> courses = this.courseService.listAll();
         model.addAttribute("courses", courses);
         model.addAttribute("bodyContent", "courses");
         return "/listCourses.html";
     }
 
-    @PostMapping("/courses/add")
-    public String saveCourse(@PathVariable Long courseId,
-                             @RequestParam String name,
-                             @RequestParam String description,
-                             @RequestParam Long student){
-        this.courseService.create(courseId,name,description,student);
+    @GetMapping("/courses/add")
+    public String getAddCoursePage(Model model) {
+        final List<Teacher> teachers = this.teacherService.findAll();
+        model.addAttribute("teachers", teachers);
 
-    return "redirect:/listCourses.html";
+        return "/addCourse.html";
+    }
+
+    @PostMapping("/courses/add")
+    public String saveCourse(@RequestParam Long teacherId,
+                             @RequestParam String name,
+                             @RequestParam String description){
+
+        this.courseService.create(null,name,description,teacherId);
+
+    return "redirect:/";
 
     }
+
     @PostMapping("/courses/delete/{id}")
     public String deleteCourse(@PathVariable Long id){
         this.courseService.delete(id);
-        return "redirect:/listCourses.html";
+        return "redirect:/";
     }
 
     @GetMapping("/courses/edit-form/{id}")

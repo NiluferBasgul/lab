@@ -24,13 +24,14 @@ public class Course {
     public List<Teacher> teachers;
 
     @Enumerated
-    private Type type;
+    private Type type = Type.ELECTIVE;
 
-    public Course(Long courseId, String name, String description, List<Student> students) {
+    public Course(Long courseId, String name, String description, List<Student> students, List<Teacher> teachers) {
         this.courseId = courseId;
         this.name = name;
         this.description = description;
         this.students = students;
+        this.teachers = teachers;
     }
 
     public Course() {
@@ -59,6 +60,22 @@ public class Course {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Teacher> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(List<Teacher> teachers) {
+        this.teachers = teachers;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public List<Student> getStudents() {

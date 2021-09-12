@@ -10,6 +10,7 @@ import wp.lab.repository.StudentRepository;
 import wp.lab.repository.TeacherRepository;
 import wp.lab.service.CourseService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -53,10 +54,14 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public Course create(Long courseId, String name, String description, Long teacher) {
-//        List<Teacher> teacher1 = this.teacherRepository.findById(teacher);
-//        Course course = new Course(courseId,name,description,teacher1);
-//        courseRepository.save(course);
+    public Course create(Long courseId, String name, String description, Long teacherId) {
+        final List<Teacher> teachers = new ArrayList<>();
+        final Teacher teacher = teacherRepository.findById(teacherId).orElseThrow(InvalidCourseCredentials::new);
+
+        teachers.add(teacher);
+
+        Course course = new Course(courseId,name,description,null, teachers);
+        courseRepository.save(course);
         return null;
 
     }

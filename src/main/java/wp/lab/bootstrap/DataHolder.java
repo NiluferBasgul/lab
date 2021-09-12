@@ -42,11 +42,11 @@ public class DataHolder {
         fewStudentList.add(alican);
 
 
-        courseList.add(new Course(1l, "OS", "Operativni Sistemi", allStudentList));
-        courseList.add(new Course(2l, "WP", "Web programiranje", fewStudentList));
-        courseList.add(new Course(3l, "APS", "Algoritmi i podatocni strukturi", allStudentList));
-        courseList.add(new Course(4l, "SP", "Strukturno Programiranje", allStudentList));
-        courseList.add(new Course(5l, "OP", "Objektno Programiranje", allStudentList));
+        courseList.add(new Course(1l, "OS", "Operativni Sistemi", allStudentList, null));
+        courseList.add(new Course(2l, "WP", "Web programiranje", fewStudentList, null));
+        courseList.add(new Course(3l, "APS", "Algoritmi i podatocni strukturi", allStudentList, null));
+        courseList.add(new Course(4l, "SP", "Strukturno Programiranje", allStudentList, null));
+        courseList.add(new Course(5l, "OP", "Objektno Programiranje", allStudentList, null));
 
         teacherList.add(new Teacher(1l, "teacher1", "surname1"));
         teacherList.add(new Teacher(2l, "teacher2", "surname2"));

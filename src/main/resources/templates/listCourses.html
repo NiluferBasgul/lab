@@ -1,27 +1,37 @@
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <title>Welcome and Choose a Course</title>
-    <style type="text/css">
-        body {
-            width: 800px;
-            margin: auto;
-        }
-    </style>
+    <title>WP Exam</title>
 </head>
 <body>
-<header>
-    <h1>Courses List</h1>
-</header>
-<main>
-    <h2>Choose course:</h2>
-    <input type="radio" name="courseId" th:value="${course?.courseId}"> Веб програмирање<br/>
-    <input type="radio" name="courseId" th:value="${course?.courseId}"> Оперативни системи<br/>
-    <input type="radio" name="courseId" th:value="${course?.courseId}"> Електронска и мобилна трговија<br/>
-    <input type="radio" name="courseId" th:value="${course?.courseId}"> Компјутерски мрежи<br/>
 
-    <br/>
-    <a href="/АddStudent">Submit</a>
-</main>
+<div>
+    <a href="/courses/add">Create a Course</a>
+</div>
+
+<div>
+    <table>
+        <tr>
+            <th>Course name</th>
+            <th>Description</th>
+        </tr>
+
+        <tr class="item" th:each="course: ${courses}"  >
+            <td th:text="${course.name}">[course.name]</td>
+            <td th:text="${course.description}">[course.description]</td>
+            <td>
+                <!-- NewsController.delete -->
+                <form method="POST" th:action="@{'/courses/delete/{id}' (id=${course.courseId})}">
+                    <button type="submit" class="delete-item">Delete</button>
+                </form>
+
+                <form method="POST" th:action="@{'/courses/edit-form/{id}' (id=${course.courseId})}">
+                    <button type="submit">Edit</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+</div>
 </body>
 </html>
