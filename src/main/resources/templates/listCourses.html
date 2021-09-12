@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Welcome and Choose a Course</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Courses List</h1>
+</header>
+<main>
+    <h2>Choose course:</h2>
+    <input type="radio" name="courseId" th:value="${course?.courseId}"> Веб програмирање<br/>
+    <input type="radio" name="courseId" th:value="${course?.courseId}"> Оперативни системи<br/>
+    <input type="radio" name="courseId" th:value="${course?.courseId}"> Електронска и мобилна трговија<br/>
+    <input type="radio" name="courseId" th:value="${course?.courseId}"> Компјутерски мрежи<br/>
+
+    <br/>
+    <a href="/АddStudent">Submit</a>
+</main>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="form-group">
+    <label for="name">Course name</label>
+    <input type="text"
+           class="form-control"
+           id="name"
+           name="name"
+           th:value="(${course} != null ? ${course.getName()} : '')"
+           required
+           placeholder="Enter course name">
+</div>
+
+<div class="form-group">
+    <label for="name">Description</label>
+    <input type="text"
+           class="form-control"
+           id="description"
+           name="description"
+           th:value="(${course} != null ? ${course.getDescription()} : '')"
+           required
+           placeholder="Enter description">
+</div>
+
+        <div>
+            <label>Teacher</label><br/>
+            <select id="teacher" >
+                <option th:each="teacher: ${teachers}" th:value="${teacher.id}" th:text="${teacher.name}"> [teacher.name]</option>
+            </select>
+        </div>
+
+            <form method="POST" th:action="@{'/courses/delete/{id}' (id=${courses.id})}">
+                <button type="submit" class="delete-item">Delete</button>
+            </form>
+
+            <a th:href="@{'/courses/edit/{id}' (id=${courses.id})}" class="edit-item">Edit</a>
+        </td>
+    </tr>
+</table>
+<div>
+    <a href="/courses/add" class="add-item">
+        Add Course
+    </a>
+</div>
+
+</body>
+</html>
