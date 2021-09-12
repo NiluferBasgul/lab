@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import wp.lab.model.Course;
+import wp.lab.model.Student;
 import wp.lab.model.Teacher;
 import wp.lab.service.CourseService;
 
@@ -25,7 +26,7 @@ public class CourseController {
         this.courseService = courseService;
     }
 
-    @GetMapping("/courses")
+    @GetMapping({"/", "/courses"})
     public String getCoursesPage(@RequestParam(required = false) String error, Model model){
         if (error != null && !error.isEmpty()) {
             model.addAttribute("hasError", true);
@@ -41,8 +42,8 @@ public class CourseController {
     public String saveCourse(@PathVariable Long courseId,
                              @RequestParam String name,
                              @RequestParam String description,
-                             @RequestParam Teacher teacher){
-        this.courseService.create(courseId,name,description,teacher);
+                             @RequestParam Long student){
+        this.courseService.create(courseId,name,description,student);
 
     return "redirect:/listCourses.html";
 

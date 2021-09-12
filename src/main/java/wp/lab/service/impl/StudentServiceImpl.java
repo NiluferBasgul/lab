@@ -23,12 +23,12 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> listAll() {
-        return this.studentRepository.findAllStudents();
+        return this.studentRepository.findAll();
     }
 
     @Override
-    public List<Student> searchByNameOrSurname(String text) {
-        return this.studentRepository.findAllByNameOrSurname(text);
+    public List<Student> searchByNameOrSurname(String text, String surname) {
+        return this.studentRepository.findAllByNameOrSurname(text, surname);
     }
 
     @Override

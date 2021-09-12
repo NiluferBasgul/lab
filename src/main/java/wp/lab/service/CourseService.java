@@ -14,7 +14,7 @@ public interface CourseService {
     List<Student> listStudentsByCourse(Long courseId);
     Course addStudentInCourse(String username, Long courseId);
     List<Course> listAll();
-    Course create(Long courseId, String name, String description, Teacher teacher);
+    Course create(Long courseId, String name, String description, Long teacher);
     public void delete(Long courseId);
     Course findById(Long id);
 

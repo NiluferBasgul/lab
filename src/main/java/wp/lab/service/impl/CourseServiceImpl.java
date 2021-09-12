@@ -4,8 +4,10 @@ import org.springframework.stereotype.Service;
 import wp.lab.model.Course;
 import wp.lab.model.Student;
 import wp.lab.model.Teacher;
+import wp.lab.model.exceptions.InvalidCourseCredentials;
 import wp.lab.repository.CourseRepository;
 import wp.lab.repository.StudentRepository;
+import wp.lab.repository.TeacherRepository;
 import wp.lab.service.CourseService;
 
 import java.util.List;
@@ -19,38 +21,43 @@ public class CourseServiceImpl implements CourseService {
 
     private final CourseRepository courseRepository;
     private final StudentRepository studentRepository;
+    private final TeacherRepository teacherRepository;
 
     public CourseServiceImpl(CourseRepository courseRepository,
-                             StudentRepository studentRepository) {
+                             StudentRepository studentRepository, TeacherRepository teacherRepository) {
         this.courseRepository = courseRepository;
         this.studentRepository = studentRepository;
+        this.teacherRepository = teacherRepository;
     }
 
     @Override
     public List<Student> listStudentsByCourse(Long courseId) {
-        final Course course = this.courseRepository.findById(courseId);
+        final Course course = this.courseRepository.findById(courseId).orElseThrow(InvalidCourseCredentials::new);
 
         return course.getStudents();
-
     }
 
     @Override
     public Course addStudentInCourse(String username, Long courseId) {
-        final Course course = this.courseRepository.findById(courseId);
+        final Course course = this.courseRepository.findById(courseId).orElseThrow(InvalidCourseCredentials::new);
         final Student student = this.studentRepository.findByUsername(username);
 
-        return this.courseRepository.addStudentToCourse(student, course);
+        course.getStudents().add(student);
+
+        return this.courseRepository.save(course);
     }
 
     @Override
     public List<Course> listAll() {
-        return this.courseRepository.findAllCourses();
+        return this.courseRepository.findAll();
     }
 
     @Override
-    public Course create(Long courseId, String name, String description, Teacher teacher) {
-        Course course = this.courseRepository.findById(courseId);
-        return this.courseRepository.save(course);
+    public Course create(Long courseId, String name, String description, Long teacher) {
+//        List<Teacher> teacher1 = this.teacherRepository.findById(teacher);
+//        Course course = new Course(courseId,name,description,teacher1);
+//        courseRepository.save(course);
+        return null;
 
     }
 
@@ -61,7 +68,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public Course findById(Long id) {
-        return courseRepository.findById(id);
+        return courseRepository.findById(id).orElseThrow(InvalidCourseCredentials::new);
     }
 
 
