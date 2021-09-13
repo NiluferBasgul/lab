@@ -13,5 +13,5 @@ It was made using Spring Boot, Spring Security, Thymeleaf, Spring Data JPA, Spri
 4. There are 8 DataBase Tables: course, course_student, course_teacher, grade, student, teacher.
 
  
- You can clone or fork this GitHub project and run it locally from your computer.
+ You can clone or fork this GitHub project and run it locally from your computer. In application.prod properties. For login page you can use for username 'admin' password 'admin'
 
