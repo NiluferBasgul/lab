@@ -1,4 +1,4 @@
-Online-Accounting-System
+Course-System
 =============
 ### Spring Boot Online Course System 
 This is a project for:
