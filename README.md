@@ -7,17 +7,10 @@ This is a project for:
 It was made using Spring Boot, Spring Security, Thymeleaf, Spring Data JPA, Spring Data REST, JavaScript, JQuery, Bootstrap. Database is Postgres.
 
 ### About
-1. The home page is shown as below:
-
-2. It is sent to the Login page to edit the course, add or delete the course.
-
+1. The home page is a list of courses.
+2. If you want to edit the course, add or delete the course you must be Login as a admin.
 3. Only with admin user credentials you can edit the course, add or delete the course.
-
-4.Edit and create course page is shown as below:
-
-6. DataBase Tables shown as below:
-
-7. Project structure shown as below:
+4. There are 8 DataBase Tables: course, course_student, course_teacher, grade, student, teacher.
 
  
  You can clone or fork this GitHub project and run it locally from your computer.
