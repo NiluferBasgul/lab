@@ -8,9 +8,10 @@ It was made using Spring Boot, Spring Security, Thymeleaf, Spring Data JPA, Spri
 
 ### About
 1. The home page is a list of courses.
-2. If you want to edit the course, add or delete the course you must be Login as a admin.
-3. Only with admin user credentials you can edit the course, add or delete the course.
-https://github.com/NiluferBasgul/lab/blob/336b58d0a49d80aa2e1e55a4ea96902bf4b6f5c1/addedit.JPG
+![alt text](https://github.com/NiluferBasgul/lab/blob/037b1d68cde221c9e013543fd00af1de167eb852/1.JPG)
+3. If you want to edit the course, add or delete the course you must be Login as a admin.
+4. Only with admin user credentials you can edit the course, add or delete the course.
+![alt text](https://github.com/NiluferBasgul/lab/blob/336b58d0a49d80aa2e1e55a4ea96902bf4b6f5c1/addedit.JPG)
 5. There are 8 DataBase Tables: course, course_student, course_teacher, grade, student, teacher.
 
  
